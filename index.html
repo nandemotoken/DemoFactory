@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>demo_factory_factory</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arbutus+Slab">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="background-color: rgb(207,207,207);">
+    <div class="row">
+        <div class="col">
+            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">Network Selection</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin-top: 20px;">
+            <form id="network_radio">
+                <div class="form-check d-xl-flex align-items-xl-center" style="margin-left: 40px;margin-bottom: 20px;"><input class="form-check-input" type="radio" id="formCheck-1" checked="" name="network" value="4"><label class="form-check-label" for="formCheck-1" style="font-size: 2vw;">Rinkeby Testnet</label></div>
+                <div class="form-check d-xl-flex align-items-xl-center" style="margin-left: 40px;"><input class="form-check-input" type="radio" id="formCheck-2" name="network" value="1"><label class="form-check-label" for="formCheck-2" style="font-size: 2vw;">Ethereum Mainnet</label></div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);margin-bottom: 30px;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">create contract button</h1>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col d-lg-flex justify-content-lg-center align-items-lg-center"><a class="btn btn-light btn-lg" role="button" id="mint_button" style="font-size: 2vw;" href="javascript:contract_deployer()">create contract</a></div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);margin-bottom: 30px;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">mint button</h1>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-3 d-lg-flex align-items-lg-center"><label class="col-form-label" id="NextNftNumber" style="margin-left: 20px;font-size: 2vw;">Next NFT Number : ?</label></div>
+        <div class="col d-xl-flex align-items-xl-center"><label style="margin-left: 20px;font-size: 2vw;">IPFS Hash&nbsp;</label><input type="text" id="ipfshash" style="width: 300px;" value="QmVNKKhPomQc4fHYvdiKBwFXdHKvSWu8Rkm7pfD1Db8f25"></div>
+        <div class="col d-lg-flex justify-content-lg-center align-items-lg-center"><a class="btn btn-light btn-lg" role="button" id="mint_button" style="font-size: 2vw;" href="javascript:mint_button();">mint new demo NFT</a></div>
+    </div>
+    <div class="row">
+        <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);margin-bottom: 1000px;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">Demo Factory (Data to IPFS)</h1>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-4 d-lg-flex align-items-lg-center"><label style="margin-left: 20px;font-size: 2vw;">Name of NFT &nbsp;</label><input type="text" id="name" value="abc" style="font-size: 1vw;"></div>
+        <div class="col d-lg-flex justify-content-lg-center align-items-lg-center"><label style="font-size: 2vw;">Description&nbsp;</label><textarea id="description" style="width: 80%;font-size: 1vw;">def</textarea></div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col" style="margin-left: 20px;"><label style="font-size: 2vw;">image&nbsp;</label><input type="file" id="image" style="font-size: 1vw;"></div>
+        <div class="col"><label class="col-form-label" style="font-size: 1.5vw;">&nbsp;----mp4 animation button here if requested ----</label></div>
+    </div>
+    <div class="row" style="margin-top: 30px;">
+        <div class="col-3 d-inline-flex flex-column"><label style="margin-left: 20px;font-size: 2vw;">attributes<br></label><select id="display_type" style="margin-left: 20px;font-size: 1vw;">
+                <optgroup label="display_type">
+                    <option value="string" selected="">string</option>
+                    <option value="string">数値、日付、%表示はお問い合わせください</option>
+                </optgroup>
+            </select><input type="text" id="trait_type" placeholder="trait_type(名前)" style="margin-left: 20px;font-size: 1vw;"><input type="text" id="value" placeholder="value(値)" style="margin-left: 20px;font-size: 1vw;"></div>
+        <div class="col-2 d-xl-flex justify-content-xl-center align-items-xl-center"><a class="btn btn-light btn-lg d-xl-flex" role="button" id="set_attributes_button" style="font-size: 1.5vw;" href="javascript:addattribute();">add attribute</a></div>
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="font-size: 1vw;">display_type<br></th>
+                            <th style="font-size: 1vw;">trait_type<br></th>
+                            <th style="font-size: 1vw;">value<br></th>
+                        </tr>
+                    </thead>
+                    <tbody id="attributes_table"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 60px;">
+        <div class="col offset-3 d-lg-flex align-items-lg-center"><label style="margin-left: 20px;font-size: 2vw;">NFT Number &nbsp;</label><input type="number" id="nft_number" style="font-size: 1vw;" value="3"></div>
+        <div class="col text-center"><a class="btn btn-light btn-lg" role="button" id="ipfs_button" style="font-size: 2vw;" href="javascript:set_nft_metadata_to_ipfs()">Set NFT metadata to IPFS</a></div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/abi.js"></script>
+    <script src="assets/js/contract_deployer.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+</html>
