@@ -1,2 +1,2 @@
 # DemoFactory
-Front
+https://nandemotoken.github.io/DemoFactory/index.html
