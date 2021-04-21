@@ -45,6 +45,11 @@ async function mint_button(){
     
     _ipfshash = document.getElementById("ipfshash").value;
     console.log(_ipfshash);
+    if (_ipfshash.charAt(0) !== "Q"){
+        window.alert("IPFSハッシュでない値が入っている可能性が高いです\n再度見直してください")
+        return;
+    }
+    
     contract.mint(_ipfshash);
     localStorage.setItem( "lastsethash" , _ipfshash );
     
