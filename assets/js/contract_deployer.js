@@ -1,36 +1,66 @@
 
-const networksetting = [ 4 , 0 ];
-
 let provider;
 let signer;
 let network;
 let contract;
 let contractaddress;
-contractaddress = "0x19bDf61f38D27A1Be7d6D70Ff06Aa24c5B3f6cc1";
+
+let chainId_networkMap = new Map();
+chainId_networkMap.set( 1 , "Ethereum mainnet" )
+chainId_networkMap.set( 4 , "rinkeby testnet" )
+chainId_networkMap.set( 137 , "matic mainnet" )
+chainId_networkMap.set( 80001 , "matic testnet" )
 
 async function contract_deployer(){
     console.log(network.chainId)
-    ans = window.confirm("現在のmetamask設定は" + network.name +"です。\n進めますか？");
-    if ( !ans ){
-            return;
-        }
+    
+    if (contractaddress) {
+        window.alert("このネットワークでコントラクトを再生成するには\nまず右上のResetを押してください。\n不明点は開発スタッフにお問い合わせください");
+        return;
+    }
+    
     
     factory = new ethers.ContractFactory(abi, bytecode, signer);
     contract = await factory.deploy();   
     console.log(contract.address);
     contractaddress = contract.address;
+    await localStorage.setItem( network.name , contractaddress );
+    window.alert("右下にmetamaskポップアップが出るまで待ち\nブラウザをリロードしてください\nテストネットなら1分\nメインネットだと半日かかります\n不明点は開発スタッフにお問い合わせください");
+    //document.getElementById("NextNftNumber").innerHTML = `Next NFT Number : 1`;
+    
+    
+    
 }
 
 async function mint_button(){
     //window.alert("構築中です")
     //contract.mint("QmVNKKhPomQc4fHYvdiKBwFXdHKvSWu8Rkm7pfD1Db8f25")
+    
+    ipfshash = document.getElementById("ipfshash").value;
+    
+    if ( !contractaddress ){
+        window.alert("まず①create contractを実施してください");
+        return;
+    }
+    
     _ipfshash = document.getElementById("ipfshash").value;
     console.log(_ipfshash);
     contract.mint(_ipfshash);
+    localStorage.setItem( "lastsethash" , _ipfshash );
+    
+    window.alert("右下にmetamaskポップアップが出るまで待ち\nブラウザをリロードしてください\nテストネットなら1分\nメインネットだと半日かかります\n不明点は開発スタッフにお問い合わせください");
+
 }
 
 
-
+async function contractlocalstragereset(){
+    ans = window.confirm("NFT Contract Addressを再設定するためにブラウザをリセットしますか？")
+    if ( !ans ){ return; }
+    
+    await localStorage.removeItem( network.name );
+    
+    window.location.reload();
+}
 
 const bytecode = {
 "linkReferences": {},
