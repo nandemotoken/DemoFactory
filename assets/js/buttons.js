@@ -57,19 +57,15 @@ async function setmetadata_button(){
         return;
     }
     
-    await contract.setTokenURI( nftnumber , "ipfs://" + ipfshash).catch(() => { window.alert("エラー：未発行のNFT、または永続化されたNFTを変更しようとしていませんか？"); return; } );
-    
-    //localStorage.setItem( "lastsethash" , ipfshash );
-    
-    
-    $("#transactionmodal").modal('show');
-    bar = document.getElementById("transactionprogressbar");
-    setInterval( function(){  bar.innerHTML = bar.innerHTML + "." ; if (bar.innerHTML.length > 80){ bar.innerHTML = "." } } , 3 * 1000 );
-    
-    contract.on("SetTokenURI", ( _num , _uri ) => {
-        setTimeout( function(){location.reload()} , 5 * 1000 );
-    });
-
+    await contract.setTokenURI( nftnumber , "ipfs://" + ipfshash).then(()=>{
+        $("#transactionmodal").modal('show');
+        bar = document.getElementById("transactionprogressbar");
+        setInterval( function(){  bar.innerHTML = bar.innerHTML + "." ; if (bar.innerHTML.length > 80){ bar.innerHTML = "." } } , 3 * 1000 );
+        contract.on("SetTokenURI", ( _num , _uri ) => {
+            setTimeout( function(){location.reload()} , 5 * 1000 );
+        });
+    }).catch(() => { window.alert("エラー：未発行のNFT、または永続化されたNFTを変更しようとしていませんか？");} );
+        
 }
 
 async function finalizeNFT(){
