@@ -4,56 +4,119 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>demo_factory_factory3</title>
+    <title>demo_factory_factory6</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arbutus+Slab">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
-<body style="background-color: rgb(207,207,207);">
-    <div class="row" style="background: var(--secondary);">
+<body style="font-family: 'Arbutus Slab', serif;">
+    <div class="row" style="background: rgb(130,141,150);">
         <div class="col d-xl-flex">
-            <h3 class="d-xl-flex" id="networkstatus" style="margin-left: 30px;font-family: 'Arbutus Slab', serif;font-size: 2vw;">現在のネットワーク：metamaskなし</h3>
+            <h5 class="d-xl-flex" id="networkstatus">現在のネットワーク：metamaskなし</h5>
         </div>
-        <div class="col-6 d-xl-flex align-items-xl-center">
-            <h3 id="nftcontractaddress" style="font-size: 1.5vw;font-family: 'Arbutus Slab', serif;">NFT Contract Address : ?<br></h3>
+        <div class="col-6 d-xl-flex">
+            <h5 id="nftcontractaddress">NFT Contract Address : ?<br></h5>
         </div>
         <div class="col-1 d-xl-flex align-items-xl-center"><a class="btn btn-light" role="button" href="javascript:contractlocalstragereset()" style="font-size: 1vw;">Reset</a></div>
     </div>
     <div class="row">
         <div class="col">
-            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">①</h1>
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);">
         </div>
     </div>
-    <div class="row" style="margin-top: 20px;">
-        <div class="col d-lg-flex justify-content-lg-center align-items-lg-center"><a class="btn btn-light btn-lg" role="button" id="mint_button" style="font-size: 2vw;border-width: 3px;border-color: var(--gray);" href="javascript:contract_deployer()">create contract</a></div>
+    <div class="row deploy" id="makecontractheadingrow">
+        <div class="col">
+            <h1 class="headnum">①コントラクトの作成</h1>
+        </div>
+    </div>
+    <div class="row deploy" id="makecontractbuttonrow">
+        <div class="col-4 offset-4"><a class="btn btn-light btn-lg button-center deploy" role="button" id="mint_button" style="font-size: 2vw;border-width: 3px;border-color: var(--gray);" href="javascript:contract_deployer()">create contract</a></div>
     </div>
     <div class="row">
-        <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+        <div class="col">
             <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);">
         </div>
     </div>
     <div class="row">
         <div class="col">
-            <h1 style="font-family: 'Arbutus Slab', serif;margin-left: 20px;font-size: 3vw;">②</h1>
+            <h1 class="headnum">②NFTの発行</h1>
         </div>
     </div>
-    <div class="row" style="margin-top: 20px;">
-        <div class="col-3 d-lg-flex align-items-lg-center"><label class="col-form-label" id="NextNftNumber" style="margin-left: 20px;font-size: 2vw;">Next NFT Number : ?</label></div>
-        <div class="col-6 d-xl-flex align-items-xl-center"><label style="margin-left: 20px;font-size: 2vw;">IPFS Hash&nbsp;</label><input type="text" id="ipfshash" style="width: 70%;font-size: 1vw;"></div>
-        <div class="col d-lg-flex justify-content-lg-center align-items-lg-center"><a class="btn btn-light btn-lg" role="button" id="mint_button" style="font-size: 2vw;" href="javascript:mint_button();">mint new demo NFT</a></div>
+    <div class="row">
+        <div class="col-4 d-lg-flex"><label class="col-form-label" id="NextNftNumber" style="font-size: 2vw;margin-left: 20px;">Next NFT Number : ?</label></div>
+        <div class="col-4"><a class="btn btn-light btn-lg button-center" role="button" id="mint_button" href="javascript:mint_button();">mint new NFT</a></div>
+        <div class="col-3 offset-1"><a id="opensealink" target="_blank" href="https://opensea.io/assets/0xca0b36afbd79328e2480b45064819a7c18d21ab0/1"><img id="opensea" src="assets/img/e68241c-opensea-logo-flat-colored-blue.png" style="border-radius: 5px;box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);opacity: 0.30;width: 40%;"></a></div>
     </div>
     <div class="row">
-        <div class="col" style="margin-top: 30px;margin-bottom: 30px;">
+        <div class="col">
             <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="headnum">③IPFSハッシュの登録</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3"><label style="font-size: 2vw;margin-left: 20px;">NFT Number&nbsp;</label><input type="number" id="nftnumber3" style="font-size: 1vw;width: 20%;text-align: center;border-width: 1px;border-color: var(--gray);border-radius: 3px;"></div>
+        <div class="col-6"><label style="font-size: 2vw;">IPFS Hash&nbsp;</label><input type="text" id="ipfshash" style="font-size: 1vw;width: 70%;border-width: 1px;border-color: var(--gray);border-radius: 3px;"></div>
+        <div class="col"><a class="btn btn-light btn-lg" role="button" id="set_metadata" style="font-size: 2vw;border-width: 3px;border-color: var(--gray);" href="javascript:setmetadata_button();">set metadata</a></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h1 class="headnum">④NFTの永続化</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-4"><button class="btn btn-light btn-lg button-center" id="secureNFT" type="button" data-toggle="modal" data-target="#secureNFTModal">secure NFT</button></div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <hr style="border-width: 5px;border-color: rgba(20, 20, 20, 0.7);">
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="secureNFTModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">④NFTの永続化</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col"><label>NFT_Number&nbsp;</label><input type="number" id="secureNFTnumber4" style="border-radius: 3px;border-width: 1px;border-color: var(--gray);width: 50px;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><a id="secureNFTLink" href="#" style="font-size: 10px;" target="_blank">https://nft_url_displayed_here</a></div>
+                    </div>
+                </div>
+                <div class="modal-footer"><button class="btn btn-light" type="button" data-dismiss="modal">cancel</button><a class="btn btn-primary" role="button" href="javascript:finalizeNFT()">finalize</a></div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" role="dialog" tabindex="-1" id="transactionmodal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>右下にmetamaskポップアップが出るまでお待ちください<br>その後ブラウザが自動でリロードされます<br>テストネットなら1分<br>メインネットだと半日かかります<br>不明点は開発スタッフにお問い合わせください</p>
+                    <p id="transactionprogressbar">.</p>
+                </div>
+            </div>
         </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/abi.js"></script>
-    <script src="assets/js/contract_deployer.js"></script>
+    <script src="assets/js/buttons.js"></script>
     <script src="https://cdn.ethers.io/lib/ethers-5.0.umd.min.js"></script>
     <script src="assets/js/index.js"></script>
+    <script src="assets/js/settings_abi.js"></script>
+    <script src="assets/js/settings_bytecode.js"></script>
+    <script src="assets/js/settings_networks.js"></script>
 </body>
 
 </html>
