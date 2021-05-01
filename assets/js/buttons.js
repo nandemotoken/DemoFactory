@@ -57,7 +57,7 @@ async function setmetadata_button(){
         return;
     }
     
-    await contract.setTokenURI( nftnumber , "ipfs://" + ipfshash).catch(() => window.alert("エラー：未発行のNFT、または永続化されたNFTを変更しようとしていませんか？"));
+    await contract.setTokenURI( nftnumber , "ipfs://" + ipfshash).catch(() => { window.alert("エラー：未発行のNFT、または永続化されたNFTを変更しようとしていませんか？"); return; } );
     
     //localStorage.setItem( "lastsethash" , ipfshash );
     
