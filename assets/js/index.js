@@ -60,14 +60,15 @@ async function setVisual(){
 }
 
 async function setOpenSeaLink(){
-    document.getElementById("opensealink").href = chainId_explorerMap.get(network.chainId) + "account";
+    document.getElementById("opensealink").href = chainId_openseaMap.get(network.chainId) + "account";
 }
 
 
 async function setNFTSecureLink(){
     document.getElementById("secureNFTnumber4").addEventListener("change",function () {
-        document.getElementById("secureNFTLink").innerHTML = `${chainId_explorerMap.get(network.chainId)}assets/${contractaddress}/${document.getElementById("secureNFTnumber4").value}`
-    document.getElementById("secureNFTLink").href = `${chainId_explorerMap.get(network.chainId)}assets/${contractaddress}/${document.getElementById("secureNFTnumber4").value}`
+        link = `${chainId_openseaMap.get(network.chainId)}assets/${chainId_openseaChainMap.get(network.chainId)}${contractaddress}/${document.getElementById("secureNFTnumber4").value}`
+        document.getElementById("secureNFTLink").innerHTML = link;
+        document.getElementById("secureNFTLink").href = link;
 
     })
 }
